@@ -27,11 +27,15 @@ while game_is_on:
     car_manager.create_car()
     car_manager.move_cars()
 
+    # Detect collision with cars
     for car in car_manager.all_cars:
         if car.distance(player) < 20:
             game_is_on = False
 
+    # Detect successful crossing
     if player.ycor() > 270:
-        print('Next level')
+        player.initial_position()
+        car_manager.increase_speed()
+        scoreboard.nex_level()
 
 screen.exitonclick()
